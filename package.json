@@ -1,10 +1,11 @@
 {
 	"name": "pauseable-msw",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"license": "MIT",
 	"main": "./dist/cjs/index.js",
 	"module": "./dist/esm/index.js",
 	"types": "./dist/esm/index.d.ts",
+	"sideEffects": false,
 	"exports": {
         ".": {
             "import": {
@@ -23,6 +24,9 @@
 		"init": "typescript --init",
 		"build": "tsc && tsc -p ./tsconfig.esm.json"
 	},
+	"files": [
+		"dist"
+	],
 	"devDependencies": {
 		"msw": "^1.2.1",
 		"typescript": "^5.0.2",
