@@ -1,0 +1,15 @@
+{
+	"scripts": {
+		"test": "vitest",
+		"coverage": "vitest run --coverage",
+		"init": "typescript --init"
+	},
+	"devDependencies": {
+		"msw": "^1.2.1",
+		"typescript": "^5.0.2",
+		"vitest": "^0.29.7"
+	},
+	"dependencies": {
+		"node-fetch": "^3.3.1"
+	}
+}
