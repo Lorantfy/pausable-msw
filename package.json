@@ -1,8 +1,27 @@
 {
+	"name": "pauseable-msw",
+	"version": "1.0.0",
+	"license": "MIT",
+	"main": "./dist/cjs/index.js",
+	"module": "./dist/esm/index.js",
+	"types": "./dist/esm/index.d.ts",
+	"exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        }
+    },
 	"scripts": {
 		"test": "vitest",
 		"coverage": "vitest run --coverage",
-		"init": "typescript --init"
+		"init": "typescript --init",
+		"build": "tsc && tsc -p ./tsconfig.esm.json"
 	},
 	"devDependencies": {
 		"msw": "^1.2.1",
