@@ -1,26 +1,26 @@
-import { RequestHandler, MockedRequest, ResponseComposition, DefaultBodyType, defaultContext, rest as mrest } from 'msw';
+import { RequestHandler, MockedRequest, ResponseComposition, DefaultBodyType, RestContext, rest as mrest } from 'msw';
 
 export type PauseableHandler = RequestHandler & { pause: (pausePredicate?: (req: MockedRequest) => boolean) => void, resume: () => void };
 
 export const rest = {
-    get: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: typeof defaultContext) => void): PauseableHandler => {
+    get: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: RestContext) => void): PauseableHandler => {
         return createPauseableHandler("get", url, resolver)
     },
-    patch: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: typeof defaultContext) => void): PauseableHandler => {
+    patch: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: RestContext) => void): PauseableHandler => {
         return createPauseableHandler("patch", url, resolver)
     },
-    post: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: typeof defaultContext) => void): PauseableHandler => {
+    post: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: RestContext) => void): PauseableHandler => {
         return createPauseableHandler("post", url, resolver)
     },
-    delete: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: typeof defaultContext) => void): PauseableHandler => {
+    delete: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: RestContext) => void): PauseableHandler => {
         return createPauseableHandler("delete", url, resolver)
     },
-    put: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: typeof defaultContext) => void): PauseableHandler => {
+    put: (url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: RestContext) => void): PauseableHandler => {
         return createPauseableHandler("put", url, resolver)
     }
 };
 
-function createPauseableHandler(method: "get" | "post" | "delete" | "patch" | "put", url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: typeof defaultContext) => void) {
+function createPauseableHandler(method: "get" | "post" | "delete" | "patch" | "put", url: string, resolver: (req: MockedRequest, res: ResponseComposition<DefaultBodyType>, ctx: RestContext) => void) {
     let isResolved = true;
     let promise = Promise.resolve();
     let resolve = () => {};
